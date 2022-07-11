@@ -3,13 +3,16 @@ from time import sleep
 from tqdm import tqdm
 from datetime import datetime 
 
-t = datetime.now()
-t1 = t.strftime("%H-%M-%S")
-d1 = t.strftime("%Y-%m-%d")
+data_and_time = datetime.now()
+t1 = data_and_time.strftime("%H-%M-%S") # returns the time as a string 
+d1 = data_and_time.strftime("%Y-%m-%d") # returns the data as a string
 
-image_folder = r"C:\Users\gkerr\Desktop\vs-code\Lab Data\image_processing\Kerr fiber imaging"
-video_folder = fr"C:\Users\gkerr\Desktop\vs-code\image-to-video\{d1}_{t1}_vid"
-old_file = r"C:\Users\gkerr\Desktop\vs-code\Image-to-Video\video.avi"
+program_dir = os.path.dirname(os.path.realpath(__file__)) # stores the filepate where the main python files are being stored
+
+# Change image_folder to the directory of the image folder 
+image_folder = r"C:\Users\gkerr\Desktop\vs-code\Lab Data\image_processing\Kerr fiber imaging"  
+video_folder = fr"{program_dir}\{d1}_{t1}_vid"
+old_file = fr"{program_dir}\video.avi" 
 video_name = r"video.avi"
 
 if not os.path.exists(video_folder):
@@ -18,18 +21,15 @@ else:
     print("\nvideo path already exists\n")
 
 
-while True:
-    sleep(9)
-
-images = [img for img in os.listdir(image_folder) if img.endswith(".bmp")]
-images_50 = [img for img in os.listdir(image_folder) if img.startswith("50")]
+images = [img for img in os.listdir(image_folder) if img.endswith(".bmp")] # take all of the images which ends with ".bmp" and appends them to a list
+images_50 = [img for img in os.listdir(image_folder) if img.startswith("50")] # creates a seperate list for each of the 4 concentrations
 images_45 = [img for img in os.listdir(image_folder) if img.startswith("45")]
 images_40 = [img for img in os.listdir(image_folder) if img.startswith("40")]
 images_35 = [img for img in os.listdir(image_folder) if img.startswith("35")]
 
-speeds  = ['400', '200', '100', '050']
-concentrations = [images_50, images_45, images_40, images_35]
-trials = ['01', '02', '03', '04', '05', '06', '07']
+speeds  = ['400', '200', '100', '050'] # creates a list of the 4 different speeds used in the trials 
+concentrations = [images_50, images_45, images_40, images_35] # creates a list where each element in the list is of list of images for each concentration
+trials = ['01', '02', '03', '04', '05', '06', '07'] # creates a list which allows the program to further seperate everything 
 
 frame = cv2.imread(os.path.join(image_folder, images[0]))
 height, width, layers = frame.shape
