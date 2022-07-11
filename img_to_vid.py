@@ -1,11 +1,25 @@
 import cv2, os
 from time import sleep 
 from tqdm import tqdm
+from datetime import datetime 
+
+t = datetime.now()
+t1 = t.strftime("%H-%M-%S")
+d1 = t.strftime("%Y-%m-%d")
 
 image_folder = r"C:\Users\gkerr\Desktop\vs-code\Lab Data\image_processing\Kerr fiber imaging"
-video_folder = r"C:\Users\gkerr\Desktop\vs-code\Lab Data\image_processing\videos2"
-old_file = r"C:\Users\gkerr\Desktop\vs-code\Lab Data\image_processing\video.avi"
+video_folder = fr"C:\Users\gkerr\Desktop\vs-code\image-to-video\{d1}_{t1}_vid"
+old_file = r"C:\Users\gkerr\Desktop\vs-code\Image-to-Video\video.avi"
 video_name = r"video.avi"
+
+if not os.path.exists(video_folder):
+    os.makedirs(video_folder)
+else:
+    print("\nvideo path already exists\n")
+
+
+while True:
+    sleep(9)
 
 images = [img for img in os.listdir(image_folder) if img.endswith(".bmp")]
 images_50 = [img for img in os.listdir(image_folder) if img.startswith("50")]
