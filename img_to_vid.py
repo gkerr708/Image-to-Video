@@ -3,15 +3,16 @@ from time import sleep
 from tqdm import tqdm
 from datetime import datetime 
 
-def vidify(save_location = 'default', save_file = None): # I think save location should just be a folder 
+def vidify(image_folder, fps = 1, save_location = 'default', save_file = None): # I think save location should just be a folder 
+
     data_and_time = datetime.now()
     t1 = data_and_time.strftime("%H-%M-%S") # returns the time as a string 
     d1 = data_and_time.strftime("%Y-%m-%d") # returns the data as a string
 
     program_dir = os.path.dirname(os.path.realpath(__file__)) # stores the filepate where the main python files are being stored
 
-    # Change image_folder to the directory of the image folder 
-    image_folder = r"C:\Users\gkerr\Desktop\vs-code\Lab Data\image_processing\Kerr fiber imaging"  
+    # Change image_folder to the directory of the image folder
+    #image_folder = r"C:\Users\gkerr\Desktop\vs-code\Lab Data\image_processing\Kerr fiber imaging"  
     if save_location == 'default':
         video_folder = fr"{program_dir}\{d1}_{t1}_vid"
     else:
@@ -59,7 +60,7 @@ def vidify(save_location = 'default', save_file = None): # I think save location
 
                 list2 = [y for y in list1 if y.endswith(f"{trial}.bmp")] ####### INCOMPLETE
                 
-                video = cv2.VideoWriter(video_name, 0, 10, (width,height))
+                video = cv2.VideoWriter(video_name, 0, fps, (width,height))
                 for iii, img in enumerate(list2):
                     video.write(cv2.imread(os.path.join(image_folder, img)))
                 cv2.destroyAllWindows()

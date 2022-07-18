@@ -3,7 +3,7 @@ from tkinter.ttk import *
 from tkinter.filedialog import askopenfile 
 import time 
 
-
+#this needs to be changes to opencv
 def open_file():
     file_path = askopenfile(mode='r', filetypes=[('Image Files', '*jpeg')])
     if file_path is not None:

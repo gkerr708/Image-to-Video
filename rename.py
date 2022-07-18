@@ -1,6 +1,7 @@
 import os
 
-path = r"C:\Users\gkerr\Desktop\vs-code\Lab Data\Kerr fiber imaging"
+#path = r"C:\Users\gkerr\Desktop\vs-code\Lab Data\Kerr fiber imaging"
+path = r"C:\Users\Gavin's XPS 13\Desktop\Kerr fiber imaging"
 files = os.listdir(path)
 
 for index, file in enumerate(files):
